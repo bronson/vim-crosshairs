@@ -1,4 +1,4 @@
-" CursorLineCurrentWindow.vim: Only highlight the screen line of the cursor in the currently active window.
+" CursorLine.vim: Only highlight the screen line of the cursor in the currently active window.
 "
 " DEPENDENCIES:
 "
@@ -11,10 +11,10 @@
 "   1.00.001	08-Jun-2012	file creation
 
 " Avoid installing twice or when in unsupported Vim version.
-if exists('g:loaded_CursorLineCurrentWindow') || (v:version < 700)
+if exists('g:loaded_CursorLine') || (v:version < 700)
     finish
 endif
-let g:loaded_CursorLineCurrentWindow = 1
+let g:loaded_CursorLine = 1
 
 "- functions -------------------------------------------------------------------
 
@@ -34,7 +34,18 @@ function! s:CursorLineOnEnter()
     else
 	setlocal nocursorline
     endif
+    if s:cursorcolumn
+	if &g:cursorcolumn || exists('w:persistent_cursorcolumn') && w:persistent_cursorcolumn
+	    setlocal cursorcolumn
+	else
+	    setglobal cursorcolumn
+	endif
+    else
+	setlocal nocursorcolumn
+    endif
 endfunction
+
+
 function! s:CursorLineOnLeave()
     if s:cursorline
 	if &l:cursorline
@@ -64,12 +75,42 @@ function! s:CursorLineOnLeave()
 	    let s:cursorline = 1
 	endif
     endif
+    if s:cursorcolumn
+	if &l:cursorcolumn
+	    if ! &g:cursorcolumn
+		" user did :setlocal cursorcolumn
+		set cursorcolumn
+	    endif
+	else
+	    if &g:cursorcolumn
+		" user did :setlocal nocursorcolumn
+		set nocursorcolumn
+	    else
+		" user did :set nocursorcolumn
+		let s:cursorcolumn = 0
+	    endif
+	endif
+
+	if exists('w:persistent_cursorcolumn') && w:persistent_cursorcolumn
+	    setglobal nocursorcolumn
+	    setlocal cursorcolumn
+	else
+	    setlocal nocursorcolumn
+	endif
+    else
+	if &g:cursorcolumn && &l:cursorcolumn
+	    " user did :set cursorcolumn
+	    let s:cursorcolumn = 1
+	endif
+    endif
 endfunction
 
 
 "- autocmds --------------------------------------------------------------------
 
 let s:cursorline = &g:cursorline
+let s:cursorcolumn = &g:cursorcolumn
+
 augroup CursorLine
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * call <SID>CursorLineOnEnter()
