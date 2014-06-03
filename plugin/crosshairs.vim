@@ -1,20 +1,17 @@
-" CursorLine.vim: Only highlight the screen line of the cursor in the currently active window.
+" crosshairs.vim
 "
 " DEPENDENCIES:
 "
 " Copyright: (C) 2012 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
-"
-" Maintainer:	Ingo Karkat <ingo@karkat.de>
-"
-" REVISION	DATE		REMARKS
-"   1.00.001	08-Jun-2012	file creation
+
 
 " Avoid installing twice or when in unsupported Vim version.
-if exists('g:loaded_CursorLine') || (v:version < 700)
+if exists('g:loaded_vim_crosshairs') || (v:version < 700)
     finish
 endif
-let g:loaded_CursorLine = 1
+let g:loaded_vim_crosshairs = 1
+
 
 "- functions -------------------------------------------------------------------
 
@@ -116,5 +113,3 @@ augroup CursorLine
     autocmd VimEnter,WinEnter,BufWinEnter * call <SID>CursorLineOnEnter()
     autocmd WinLeave                      * call <SID>CursorLineOnLeave()
 augroup END
-
-" vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :

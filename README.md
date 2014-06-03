@@ -1,26 +1,32 @@
-## CursorLine
+## Vim Crosshairs
 
 This plugin displays a crosshair over the cursor, similar to having
-the cursorline or cursorcolumn settings enabled, but only in the
-active window.  It's hidden when you switch away.
+the cursorline or cursorcolumn settings enabled.  The trick is, the
+crosshairs are only visible in the active window.  This can be handy
+when you're lost in a sea of splits, vsplits, and quickfix windows.
+
+
+### TODO
+
+- Update the docfile!!
 
 
 ### Installation
 
 Using Pathogen:
 
-   git clone https://github.com/bronson/vim-cursorline ~/.vim/bundle/vim-cursorline
+   git clone https://github.com/bronson/vim-crosshairs ~/.vim/bundle/vim-crosshairs
 
-By default the crosshairs won't be shown.  Enable line, column,
+By default the crosshairs won't be shown.  You must enable line, column,
 or both in your vimrc like this:
 
-    :set cursorline
-    :set cursorcolumn
+    :set cursorline    " enable the horizontal line
+    :set cursorcolumn  " enable the vertical line
 
 
 ### Use
 
-To disable the crosshair for the current window:
+To disable the crosshairs for the current window:
 
     :setlocal nocursorline
     :setlocal nocursorcolumn
@@ -30,8 +36,8 @@ Or globally:
     :set nocursorline
     :set nocursorcolumn
 
-And to force it to always be visible in a particular window,
-set this window-local variable
+And to force the crosshairs to always be visible in a particular window,
+set a window-local variable
 
     :let w:persistent_cursorline = 1
 
