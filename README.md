@@ -23,6 +23,11 @@ or both in your vimrc like this:
     :set cursorline    " enable the horizontal line
     :set cursorcolumn  " enable the vertical line
 
+If you want to set the color of the crosshairs, use something like this:
+
+    highlight CursorLine   cterm=NONE ctermbg=black ctermfg=NONE guibg=black guifg=NON 
+    highlight CursorColumn cterm=NONE ctermbg=black ctermfg=NONE guibg=black guifg=NONE
+
 
 ### Use
 
@@ -44,8 +49,8 @@ set a window-local variable
 
 ### Origin
 
-Forked from https://github.com/vim-scripts/CursorLineCurrentWindow
-which is a copy of http://www.vim.org/scripts/script.php?script_id=4178
+- Ingo Karkat wrote http://www.vim.org/scripts/script.php?script_id=4178
+- This plugin was forked from https://github.com/vim-scripts/CursorLineCurrentWindow
 
 
 ### License
