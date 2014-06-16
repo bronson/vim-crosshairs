@@ -8,7 +8,9 @@ when you're lost in a sea of splits, vsplits, and quickfix windows.
 
 ### TODO
 
-- Update the docfile!!
+- Restore original cursorline name, it's better
+- Make it handle vsplit (right now, both splits get a cursorline)
+- Update the docfile!
 
 
 ### Installation

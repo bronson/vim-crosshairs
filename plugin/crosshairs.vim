@@ -1,7 +1,5 @@
 " crosshairs.vim
 "
-" DEPENDENCIES:
-"
 " Copyright: (C) 2012 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
